@@ -132,11 +132,11 @@ const BetterSlugs = ({ sdk }: BetterSlugsProps) => {
             }
           }
         } else {
-          if (fieldParts[1] === 'streamer') fieldParts[1] = ''
+          if (fieldParts[1] === 'streamer') fieldParts[1] = '';
           raw = await getReferenceFieldValue(fieldParts[1], fieldParts[2], locale);
         }
 
-          console.log('TCL: updateSlug -> raw', raw)
+        console.log('TCL: updateSlug -> raw', raw);
         // eslint-disable-next-line no-misleading-character-class
         const slug = slugify(raw).replace(/[-\ufe0f]+$/gu, '');
 
@@ -151,10 +151,7 @@ const BetterSlugs = ({ sdk }: BetterSlugsProps) => {
     }
 
     sdk.entry.fields[sdk.field.id].setValue(
-      slugParts
-        .join('/')
-        .replace('//', '/')
-        .replace(/\/$/, ''),
+      slugParts.join('/').replace('//', '/').replace(/\/$/, ''),
       locale
     );
   };
@@ -183,6 +180,6 @@ const BetterSlugs = ({ sdk }: BetterSlugsProps) => {
   );
 };
 
-init(sdk => {
+init((sdk) => {
   render(<BetterSlugs sdk={sdk as FieldExtensionSDK} />, document.getElementById('root'));
 });
