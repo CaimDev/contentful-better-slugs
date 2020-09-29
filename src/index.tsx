@@ -132,9 +132,11 @@ const BetterSlugs = ({ sdk }: BetterSlugsProps) => {
             }
           }
         } else {
+          if (fieldParts[1] === 'streamer') fieldParts[1] = ''
           raw = await getReferenceFieldValue(fieldParts[1], fieldParts[2], locale);
         }
 
+          console.log('TCL: updateSlug -> raw', raw)
         // eslint-disable-next-line no-misleading-character-class
         const slug = slugify(raw).replace(/[-\ufe0f]+$/gu, '');
 
